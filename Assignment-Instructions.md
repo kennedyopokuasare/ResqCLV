@@ -9,7 +9,7 @@ The analyst wants to make at least the following queries:
 - Query to find the top 10 partners by sales
 - Query to identify the customers’ favourite partner segments (default offer types). Partners are the companies who sell surplus items on the marketplace.
 - Query to find out what is the M1 retention for any given customer cohort. A cohort consists of customers who made their first order within the same month (M0). M1 retention is the share of customers who have made at least one purchase one month after their first purchase month.
-
+    
 **Deliverable #1:** a simple data pipeline where this kind of presentation table is being created to help the analyst. Note that it’s not necessary to answer these questions yourself, but feel free to do that, if you want to ease up the analyst’s life.   
 
 **Problem #2**
