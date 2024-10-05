@@ -30,6 +30,10 @@ Create and activate the virtual environment with the command below
 If the virtual environment is set up and activated correctly, the prompt should show
    `(resq)`
 
+## References
+* [Gartner - Customer Lifetime Value (CLV): A Critical Metric for Building Strong Customer Relationships, Gartner][gartner_clv]
+* [SalesCummications.fi - Customer Lifetime Value (CLV) - What is it and why is it important for a company?][SalesCommmunication.fi]
+
 
 [gartner_clv]: https://www.gartner.com/en/digital-markets/insights/what-is-customer-lifetime-value
 [SalesCommmunication.fi]: https://www.salescommunications.fi/vastaukset/kuinka-asiakkaan-elinkaaren-arvo-lasketaan
