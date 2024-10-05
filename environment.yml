@@ -76,4 +76,3 @@ dependencies:
       - sqlglot==25.24.4
       - sqlparse==0.5.1
       - urllib3==2.2.3
-prefix: /opt/anaconda3/envs/resq
