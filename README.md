@@ -27,6 +27,7 @@ Create and activate the virtual environment with the command below
     conda env create -f environment.yml
     conda activate resq 
 ````
+
 If the virtual environment is set up and activated correctly, the prompt should show
    `(resq)`
 
