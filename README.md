@@ -30,7 +30,14 @@ Create and activate the virtual environment with the command below
 If the virtual environment is set up and activated correctly, the prompt should show
    `(resq)`
 
+## Data Pipeline
+
+The [Data pipeline](data-exploration-and-pipeline.ipynb) is a notebook that explores the data in the sqlite database, and answers the Analyst's questions to make life easier for the Analyst. The [Data pipeline](data-exploration-and-pipeline.ipynb) also has a simple Data Pipeline that creates the needed presentation tables and Views in the sql database. The Analysis can further query the database via the views without having to do complex sql and joins. 
+
+Click [here (Data pipeline) ](data-exploration-and-pipeline.ipynb) to view the pipeline script
+
 ## References
+
 * [Gartner - Customer Lifetime Value (CLV): A Critical Metric for Building Strong Customer Relationships, Gartner][gartner_clv]
 * [SalesCummications.fi - Customer Lifetime Value (CLV) - What is it and why is it important for a company?][SalesCommmunication.fi]
 
