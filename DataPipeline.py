@@ -35,19 +35,59 @@ class DataPipeline(object):
         
         return self._execute_query(query=sql, param=(top_n,))
 
-    def m1_retention_rate(self):
+    def m_retention_rate(self, month=1):
         """
-        Returns M1 retention rate
+        Returns M retention rate. Defauts to MI retention rate
         """
 
         sql = """
                 SELECT 
+                (
+                    CAST(
                     (
-                        CAST((SELECT COUNT(*) FROM CUSTOMER_COHORT WHERE COHORT > 0) AS REAL) / 
-                        CAST((SELECT COUNT(*)  FROM USERS) AS REAL)
-                    ) * 100 AS M1_SHARE_PERCENTAGE
+                        SELECT COUNT(*) 
+                        FROM CUSTOMER_COHORT 
+                        WHERE MONTHS_SINCE_FIRST_PURCHASE = ?
+                    ) AS REAL) / 
+                    CAST(
+                        (
+                            SELECT COUNT(DISTINCT(USERID)) FROM CUSTOMER_COHORT
+                        ) AS REAL)
+                ) * 100 AS M_RETENTION
               """
-        return self._execute_query(query=sql)
+        return self._execute_query(query=sql, param=(month,))
+    
+    def m_retention_rate_by_cohort(self, month=1, cohort=None):
+        """
+        Returns M retention rate by cohort. Defauts to MI retention rate of entire customers
+
+        Keyword arguments:
+
+        :cohort: -- the cohort in the form yyyy-mm-01
+        """
+
+        if not cohort:
+            return self.m_retention_rate(month=month)
+        
+        sql = """
+                SELECT 
+                (
+                    CAST(
+                    (
+                        SELECT COUNT(*) 
+                        FROM CUSTOMER_COHORT 
+                        WHERE MONTHS_SINCE_FIRST_PURCHASE = ? AND COHORT_DATE = ?
+                    ) AS REAL) / 
+                    CAST(
+                        (
+                            SELECT COUNT(DISTINCT(USERID)) 
+                            FROM CUSTOMER_COHORT
+                            WHERE COHORT_DATE = ?
+                        ) AS REAL)
+                ) * 100 AS M_RETENTION
+              """
+        return self._execute_query(query=sql, param=(month,cohort,cohort,))
+    
 
     def _create_top_partners_by_sales_view(self):
         """

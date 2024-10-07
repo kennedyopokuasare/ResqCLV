@@ -5,21 +5,24 @@ AS
     WITH FIRSTORDERDATES AS (
         SELECT 
             USERID, 
-            MIN(DATE(CREATEDAT)) AS FIRST_ORDER_DATE
+            strftime('%Y-%m-01', MIN(DATE(CREATEDAT)))  AS COHORT_DATE
         FROM ORDERS
         GROUP BY USERID
+    ),
+    AT_LEAST_ONE_ORDER_PER_MONTH AS (
+        SELECT 
+            USERID, 
+            MAX(CREATEDAT) AS PURCHASE_DATE
+        FROM ORDERS
+        GROUP BY USERID, strftime('%Y-%m-01', CREATEDAT)
     )
-    
+
     SELECT 
-        USERID, 
-        MAX(COHORT) AS COHORT
-    FROM (
-            SELECT 
-                O.USERID, 
-                ((strftime('%Y', O.CREATEDAT) - strftime('%Y', FOD.FIRST_ORDER_DATE)) * 12) + 
-                (strftime('%m', O.CREATEDAT) - strftime('%m', FOD.FIRST_ORDER_DATE)) AS COHORT
-            FROM ORDERS O
-            LEFT JOIN FIRSTORDERDATES FOD ON O.USERID = FOD.USERID
-    ) AS HISTORICALCOHORTS
-    GROUP BY USERID  
-    ORDER BY COHORT DESC;
+        O.USERID, 
+        FOD.COHORT_DATE,
+        O.PURCHASE_DATE, 
+        ((strftime('%Y', O.PURCHASE_DATE) - strftime('%Y', FOD.COHORT_DATE)) * 12) + 
+        (strftime('%m', O.PURCHASE_DATE) - strftime('%m', FOD.COHORT_DATE)) AS MONTHS_SINCE_FIRST_PURCHASE
+    FROM AT_LEAST_ONE_ORDER_PER_MONTH O
+    LEFT JOIN FIRSTORDERDATES FOD ON O.USERID = FOD.USERID
+    ORDER BY FOD.COHORT_DATE, O.USERID, O.PURCHASE_DATE;
