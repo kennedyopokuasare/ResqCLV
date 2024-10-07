@@ -4,3 +4,4 @@ dbt_packages/
 logs/
 .DS_Store
 __pycache__/
+.DS_Store

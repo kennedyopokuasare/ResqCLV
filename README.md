@@ -41,8 +41,10 @@ Click [here (Data pipeline) ](data-exploration-and-pipeline.ipynb) to view the p
 
 * [Gartner - Customer Lifetime Value (CLV): A Critical Metric for Building Strong Customer Relationships, Gartner][gartner_clv]
 * [SalesCummications.fi - Customer Lifetime Value (CLV) - What is it and why is it important for a company?][SalesCommmunication.fi]
+* [How to interpret cohort chart][interpret_cohort_chart]
 
 
 [gartner_clv]: https://www.gartner.com/en/digital-markets/insights/what-is-customer-lifetime-value
 [SalesCommmunication.fi]: https://www.salescommunications.fi/vastaukset/kuinka-asiakkaan-elinkaaren-arvo-lasketaan
 [minconda]: https://docs.conda.io/en/latest/miniconda.html
+[interpret_cohort_chart]: https://www.adverity.com/blog/is-mastering-cohort-analysis-worth-the-challenge
