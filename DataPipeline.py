@@ -13,6 +13,7 @@ class DataPipeline(object):
         self._create_customer_cohorts_view()
         self._create_top_partners_by_sales_view()
         self._create_partner_segment_order_quantity_view()
+        self._create_lifespan_frequency_sales_view()
         self._close_connection()
         self._log("Done")
 
@@ -122,6 +123,15 @@ class DataPipeline(object):
 
         self._log("Creating customer cohorts view in database")
         script_path = "./data/sql/customer_cohort.sql"
+        self._execute_script(script_path)
+    
+    def _create_lifespan_frequency_sales_view(self):
+        """
+        Creates Lifespan, Frequency, sales value view
+        """
+
+        self._log("Creating Lifespan, Frequency, sales value view in database")
+        script_path = "./data/sql/lifespan_frequency_sales_value.sql"
         self._execute_script(script_path)
 
     def _create_connection(self):
