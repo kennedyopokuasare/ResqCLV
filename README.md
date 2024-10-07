@@ -37,6 +37,16 @@ The [Data pipeline](data-exploration-and-pipeline.ipynb) is a notebook that expl
 
 Click [here (Data pipeline) ](data-exploration-and-pipeline.ipynb) to view the pipeline script
 
+## CLV Analysis
+
+The [Customer Lifetime Value Analysis](customer-lifetime-value-analysis.ipynb) notebook.
+
+![Retention curve](./img/clv_retention_curve.png)
+
+![Retention curve](./img/clv_cohort_analysis.png)
+
+Click [here to view the notebook](customer-lifetime-value-analysis.ipynb)
+
 ## References
 
 * [Gartner - Customer Lifetime Value (CLV): A Critical Metric for Building Strong Customer Relationships, Gartner][gartner_clv]

@@ -22,7 +22,7 @@ class DataPipeline(object):
         """
         
         sql = "SELECT * FROM TOP_PARTNERS LIMIT ?"
-        return self._execute_query(query= sql, param=(top_n,))
+        return self.execute_query(query= sql, param=(top_n,))
 
     def customers_top_partner_segment(self, top_n=None):
         """
@@ -33,7 +33,7 @@ class DataPipeline(object):
         top_n = 1 if top_n is None else top_n
         sql = "SELECT * FROM PARTNET_SEGMENT_ORDER_QUANTIY LIMIT ?"
         
-        return self._execute_query(query=sql, param=(top_n,))
+        return self.execute_query(query=sql, param=(top_n,))
 
     def m_retention_rate(self, month=1):
         """
@@ -55,7 +55,7 @@ class DataPipeline(object):
                         ) AS REAL)
                 ) * 100 AS M_RETENTION
               """
-        return self._execute_query(query=sql, param=(month,))
+        return self.execute_query(query=sql, param=(month,))
     
     def m_retention_rate_by_cohort(self, month=1, cohort=None):
         """
@@ -86,9 +86,17 @@ class DataPipeline(object):
                         ) AS REAL)
                 ) * 100 AS M_RETENTION
               """
-        return self._execute_query(query=sql, param=(month,cohort,cohort,))
+        return self.execute_query(query=sql, param=(month,cohort,cohort,))
     
+    def execute_query(self, query, param=None):
+        """
+        Execute SQL query with parameters 
+        """
 
+        self._create_connection()
+        with self.conn as connection:
+            return pd.read_sql_query(sql=query, con=connection, params=param)
+        
     def _create_top_partners_by_sales_view(self):
         """
         Creates top partners by sales view
@@ -142,15 +150,6 @@ class DataPipeline(object):
 
         cursor = self.conn.cursor()
         cursor.executescript(sql_script)
-
-    def _execute_query(self, query, param=None):
-        """
-        Execute SQL query with parameters 
-        """
-
-        self._create_connection()
-        with self.conn as connection:
-            return pd.read_sql_query(sql=query, con=connection, params=param)
     
     def _log(self, text):
         print(datetime.now().strftime('%H:%M:%S'), text)
