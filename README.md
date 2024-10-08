@@ -52,6 +52,7 @@ Click [here to view the notebook][clv_analysis]
 
 ## References
 
+* [Video, Making a case for probabilitic models][firstMarkCapital]
 * [Gartner - Customer Lifetime Value (CLV): A Critical Metric for Building Strong Customer Relationships, Gartner][gartner_clv]
 * [SalesCummications.fi - Customer Lifetime Value (CLV) - What is it and why is it important for a company?][SalesCommmunication.fi]
 * [How to interpret cohort chart][interpret_cohort_chart]
@@ -63,3 +64,4 @@ Click [here to view the notebook][clv_analysis]
 [interpret_cohort_chart]: https://www.adverity.com/blog/is-mastering-cohort-analysis-worth-the-challenge
 [data_pipeline]: data-exploration-and-pipeline.ipynb
 [clv_analysis]: customer-lifetime-value-analysis.ipynb
+[firstMarkCapital]: https://www.youtube.com/watch?v=guj2gVEEx4s&ab_channel=FirstMarkCapital

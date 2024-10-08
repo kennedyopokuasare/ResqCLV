@@ -20,4 +20,4 @@ AS
         AVG(O.SALES) AS average_sales
     FROM ORDERS O
     LEFT JOIN FIRSTORDERDATES FOD ON O.USERID = FOD.USERID
-    GROUP BY O.USERID, strftime('%Y-%m-01', O.CREATEDAT), O.currency
+    GROUP BY O.USERID, O.currency
