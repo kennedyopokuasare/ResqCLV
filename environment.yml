@@ -93,6 +93,7 @@ dependencies:
       - agate==1.7.0
       - annotated-types==0.7.0
       - attrs==24.2.0
+      - autograd==1.7.0
       - babel==2.16.0
       - backoff==2.2.1
       - betterproto==1.2.5
@@ -109,6 +110,7 @@ dependencies:
       - dbt-semantic-interfaces==0.5.1
       - dbt-sqlite==1.5.0
       - deepdiff==7.0.1
+      - dill==0.3.9
       - future==1.0.0
       - grpclib==0.4.7
       - h2==4.1.0
@@ -125,6 +127,7 @@ dependencies:
       - jupysql==0.10.14
       - jupysql-plugin==0.4.5
       - leather==0.4.0
+      - lifetimes==0.11.3
       - logbook==1.5.3
       - markupsafe==2.1.5
       - mashumaro==3.6
@@ -155,6 +158,7 @@ dependencies:
       - referencing==0.35.1
       - requests==2.32.3
       - rpds-py==0.20.0
+      - scipy==1.14.1
       - sqlalchemy==2.0.35
       - sqlglot==25.24.4
       - sqlparse==0.4.3

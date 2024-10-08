@@ -12,6 +12,7 @@ AS
 
     SELECT 
         O.USERID,
+        FOD.COHORT_DATE,
         strftime('%Y-%m-01', MAX(DATE(CREATEDAT)))  AS purchase_month,
         ((strftime('%Y', MAX(DATE(CREATEDAT))) - strftime('%Y', FOD.COHORT_DATE)) * 12) + (strftime('%m', MAX(DATE(CREATEDAT))) - strftime('%m', FOD.COHORT_DATE)) as lifespan,
         COUNT(O.SALES) AS frequency,

@@ -10,6 +10,7 @@ The Data Analysis team was a  data pipeline where from which they can easy query
 This projoects implements the a data pipeline and the CLV analysis for the company. 
 
 **Deliverable 1:** [Data pipeline][data_pipeline]
+
 **Deliverable 2:** [Customer Lifetime Value Analysis][clv_analysis]
 
 ## Setting up the project
