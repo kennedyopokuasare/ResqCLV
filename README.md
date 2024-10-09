@@ -9,9 +9,22 @@ The Data Analysis team was a  data pipeline where from which they can easy query
 
 This projoects implements the a data pipeline and the CLV analysis for the company. 
 
-**Deliverable 1:** [Data pipeline][data_pipeline]
+### Deliverable 1: [Data pipeline][data_pipeline]
 
-**Deliverable 2:** [Customer Lifetime Value Analysis][clv_analysis]
+The [Data pipeline][data_pipeline] is a notebook that explores the data in the sqlite database, and answers the Analyst's questions to make life easier for the Analyst. The [Data pipeline][data_pipeline] also has a simple Data Pipeline that creates the needed presentation tables and Views in the sql database. The Analysis can further query the database via the views without having to do complex sql and joins. 
+
+Click [here (Data pipeline) ][data_pipeline] to view the pipeline script
+
+### Deliverable 2: [Customer Lifetime Value Analysis][clv_analysis]
+
+The [Customer Lifetime Value Analysis][clv_analysis] notebook.
+
+![Retention curve](./img/clv_retention_curve.png)
+
+![Retention curve](./img/clv_cohort_analysis.png)
+
+Click [here to view the notebook][clv_analysis]
+
 
 ## Setting up the project
 
@@ -33,22 +46,6 @@ Create and activate the virtual environment with the command below
 
 If the virtual environment is set up and activated correctly, the prompt should show
    `(resq)`
-
-## Data Pipeline
-
-The [Data pipeline][data_pipeline] is a notebook that explores the data in the sqlite database, and answers the Analyst's questions to make life easier for the Analyst. The [Data pipeline][data_pipeline] also has a simple Data Pipeline that creates the needed presentation tables and Views in the sql database. The Analysis can further query the database via the views without having to do complex sql and joins. 
-
-Click [here (Data pipeline) ][data_pipeline] to view the pipeline script
-
-## CLV Analysis
-
-The [Customer Lifetime Value Analysis][clv_analysis] notebook.
-
-![Retention curve](./img/clv_retention_curve.png)
-
-![Retention curve](./img/clv_cohort_analysis.png)
-
-Click [here to view the notebook][clv_analysis]
 
 ## References
 
