@@ -1,4 +1,5 @@
 # Customer Life Value Analysis and Data Pipeline
+
 **Customer Life Value (CLV)** is a critical metric that computes how much revenue a customer provides to a company during the Customer relationship. It is an important metric for making decisions such as how much to spend on acquring new customers and return on investment (ROI) and customer segmentation and relationship management [ [1][gartner_clv], [2][SalesCommmunication.fi] ].
 
 The marketing team at wants to know how much can they spend on acquiring new customers to the platform. Therefore,they need CLV Analysis on an all customers for theor entire customer relation duration. The Data Analysis team was a  data pipeline where from which they can easy query the top partners by sales, Customers’ favourite partner segments (default offer types) and the M1 retention for any given customer cohort.
@@ -13,14 +14,9 @@ Click [here (Data pipeline) ][data_pipeline] to view the pipeline script
 
 ## Deliverable 2: [Customer Lifetime Value Analysis][clv_analysis]
 
-The [Customer Lifetime Value Analysis][clv_analysis] notebook.
+The [Customer Lifetime Value Analysis](clv_analysis) employs descriptive, probabilistic, and predictive analysis to estimate both historical and future lifetime values of customers, providing insights for the marketing team.
 
-![Retention curve](./img/clv_retention_curve.png)
-
-![Retention curve](./img/clv_cohort_analysis.png)
-
-Click [here to view the notebook][clv_analysis]
-
+Click [here (CLV Analysis)][data_pipeline] to view the notebook.
 
 ## Setting up the project
 
