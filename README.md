@@ -49,6 +49,7 @@ If the virtual environment is set up and activated correctly, the prompt should 
 * [Gartner - Customer Lifetime Value (CLV): A Critical Metric for Building Strong Customer Relationships, Gartner][gartner_clv]
 * [SalesCummications.fi - Customer Lifetime Value (CLV) - What is it and why is it important for a company?][SalesCommmunication.fi]
 * [How to interpret cohort chart][interpret_cohort_chart]
+* [Optimizing XGboots hyperparameters][xgboost_hyperparameter_optimization]
 
 
 [gartner_clv]: https://www.gartner.com/en/digital-markets/insights/what-is-customer-lifetime-value
@@ -58,3 +59,4 @@ If the virtual environment is set up and activated correctly, the prompt should 
 [data_pipeline]: data-exploration-and-pipeline.ipynb
 [clv_analysis]: customer-lifetime-value-analysis.ipynb
 [firstMarkCapital]: https://www.youtube.com/watch?v=guj2gVEEx4s&ab_channel=FirstMarkCapital
+[xgboost_hyperparameter_optimization]: https://medium.com/@rithpansanga/optimizing-xgboost-a-guide-to-hyperparameter-tuning-77b6e48e289d
