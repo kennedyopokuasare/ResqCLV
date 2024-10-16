@@ -15,6 +15,7 @@ class DataPipeline(object):
 
         self._create_connection()
         self._create_customer_cohorts_view()
+        self._create_provider_cohorts_view()
         self._create_top_partners_by_sales_view()
         self._create_partner_segment_order_quantity_view()
         self._create_lifespan_frequency_sales_view()
@@ -48,9 +49,9 @@ class DataPipeline(object):
 
         return self.execute_query(query=sql, param=(top_n,))
 
-    def m_retention_rate(self, month=1):
+    def m_customer_retention_rate(self, month=1):
         """
-        Returns M retention rate. Defauts to MI retention rate
+        Returns M customer retention rate. Defauts to MI retention rate
         """
 
         if not isinstance(month, int):
@@ -72,10 +73,35 @@ class DataPipeline(object):
                 ) * 100 AS M_RETENTION
               """
         return self.execute_query(query=sql, param=(month,))
-
-    def m_retention_rate_by_cohort(self, month=1, cohort=None):
+    
+    def m_provider_retention_rate(self, month=1):
         """
-        Returns M retention rate by cohort. Defauts to MI retention rate of entire customers
+        Returns M provider retention rate. Defauts to MI retention rate
+        """
+
+        if not isinstance(month, int):
+            raise ValueError("month must be in int")
+
+        sql = """
+                SELECT 
+                (
+                    CAST(
+                    (
+                        SELECT COUNT(*) 
+                        FROM PROVIDER_COHORT 
+                        WHERE MONTHS_SINCE_FIRST_PURCHASE = ?
+                    ) AS REAL) / 
+                    CAST(
+                        (
+                            SELECT COUNT(DISTINCT(providerId)) FROM PROVIDER_COHORT
+                        ) AS REAL)
+                ) * 100 AS M_RETENTION
+              """
+        return self.execute_query(query=sql, param=(month,))
+    
+    def m_customer_retention_rate_by_cohort(self, month=1, cohort=None):
+        """
+        Returns M customer retention rate by cohort. Defauts to MI retention rate of entire customers
 
         Keyword arguments:
 
@@ -86,7 +112,7 @@ class DataPipeline(object):
             raise ValueError("month must be an int")
 
         if not cohort:
-            return self.m_retention_rate(month=month)
+            return self.m_customer_retention_rate(month=month)
 
         error_message = "cohort must be a date in the format yyyy-mm-01"
         try:
@@ -123,6 +149,56 @@ class DataPipeline(object):
             ),
         )
 
+    def m_provider_retention_rate_by_cohort(self, month=1, cohort=None):
+        """
+        Returns M provider retention rate by cohort. Defauts to MI retention rate of entire customers
+
+        Keyword arguments:
+
+        :cohort: -- the cohort in the form yyyy-mm-01
+        """
+
+        if not isinstance(month, int):
+            raise ValueError("month must be an int")
+
+        if not cohort:
+            return self.m_provider_retention_rate(month=month)
+
+        error_message = "cohort must be a date in the format yyyy-mm-01"
+        try:
+            cohort_date = datetime.fromisoformat(cohort)
+
+            if cohort_date.day != 1:
+                raise ValueError(error_message)
+        except:
+            raise ValueError(error_message)
+
+        sql = """
+                SELECT 
+                (
+                    CAST(
+                    (
+                        SELECT COUNT(*) 
+                        FROM PROVIDER_COHORT 
+                        WHERE MONTHS_SINCE_FIRST_PURCHASE = ? AND COHORT_DATE = ?
+                    ) AS REAL) / 
+                    CAST(
+                        (
+                            SELECT COUNT(DISTINCT(providerId)) 
+                            FROM PROVIDER_COHORT
+                            WHERE COHORT_DATE = ?
+                        ) AS REAL)
+                ) * 100 AS M_RETENTION
+              """
+        return self.execute_query(
+            query=sql,
+            param=(
+                month,
+                cohort,
+                cohort,
+            ),
+        )
+    
     def execute_query(self, query: str, param : tuple | None= None):
         """
         Execute SQL query with parameters
@@ -157,6 +233,15 @@ class DataPipeline(object):
 
         self._log("Creating customer cohorts view in database")
         script_path = os.path.join(self._script_path,"customer_cohort.sql")
+        self._execute_script(script_path)
+    
+    def _create_provider_cohorts_view(self):
+        """
+        Creates provider cohorts view
+        """
+
+        self._log("Creating provider cohorts view in database")
+        script_path = os.path.join(self._script_path,"provider_cohort.sql")
         self._execute_script(script_path)
 
     def _create_lifespan_frequency_sales_view(self):
